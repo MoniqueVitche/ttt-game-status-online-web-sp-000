@@ -15,6 +15,7 @@ WIN_COMBINATIONS = [
   [6, 4, 2]
 ]
 
+#Is there a win?
 def won?(board)
   WIN_COMBINATIONS.find do |combo|
     board[combo[0]] == board[combo[1]] &&
