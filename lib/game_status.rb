@@ -16,19 +16,23 @@ WIN_COMBINATIONS = [
 ]
 
 def won?(board)
-  WIN_COMBINATIONS.detect do |combo|
+  WIN_COMBINATIONS.find do |combo|
     board[combo[0]] == board[combo[1]] &&
     board[combo[1]] == board[combo[2]] &&
     position_taken?(board, combo[0])
   end
 end
 
+#Is the game a draw?
 def draw?(board)
   !won?(board) && board.all?{|token| token == "X" || token == "O"}
 end
 
-def winner(board)
-  if winning_combo = won?(board)
-    board[winning_combo.first]
-  end
+#Is the board full?
+def full?(board)
+  board.all? {|position| position == "X" || position == "O"}
 end
+
+# Is the game over?
+def over?(board)
+  draw?(board) || won?(board)
